@@ -15,17 +15,7 @@ Attached is a valid ruby script. You can edit in browser or on local ruby file. 
 SUCCESS! Great success!
 ```
 
-
-```py
-## Constraints
-1. Although we only use error/success events, please build the class to handle arbitrary events.
-2. event data will always be a hash
-3. The syntax to call a proc is: proc.call(data)
-
-
-If you run into any roadblocks. Please let me know if you have any questions!
-
-
+```ruby
 
 # Constraints:
 # 1. event names are arbitrary strings
@@ -71,4 +61,54 @@ emitter.emit "success", { message: "Great success!" }
 # Error 1. Yet another error.
 # Error 2. Yet another error.
 # SUCCESS! Great success!
+
+```
+
+
+```py
+# Constraints:
+# 1. event names are arbitrary strings
+# 2. event data is always a hash
+# 3. calling a proc is just: proc.call(data)
+
+class EventBus
+  def initialize
+    # your code
+  end
+  
+  def emit(event_name, data)
+    # your code
+  end
+
+  def subscribe(event_name, callback)
+    # your code
+  end
+end
+
+#----------------------------------------
+
+emitter = EventBus.new
+
+error_callback = proc { |data| puts "Error 1. #{data[:message]}" }
+error_callback2 = proc { |data| puts "Error 2. #{data[:message]}" }
+success_callback = proc { |data| puts "SUCCESS! #{data[:message]}" }
+
+emitter.emit "error", { message: "Error one." }
+
+emitter.subscribe "error", error_callback
+emitter.emit "error", { message: "Second error." }
+
+emitter.subscribe "error", error_callback2
+emitter.emit "error", { message: "Yet another error." }
+
+emitter.subscribe "success", success_callback
+emitter.emit "success", { message: "Great success!" }
+ 
+# Expected output:
+
+# Error 1. Second error.
+# Error 1. Yet another error.
+# Error 2. Yet another error.
+# SUCCESS! Great success!
+
 ```
