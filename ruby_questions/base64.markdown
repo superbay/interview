@@ -13,3 +13,6 @@ plain = Base64.decode64(enc)
                     
                     
 ```
+
+
+include padding number, and the 64 others
