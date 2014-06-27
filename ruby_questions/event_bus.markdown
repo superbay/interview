@@ -15,6 +15,8 @@ Attached is a valid ruby script. You can edit in browser or on local ruby file. 
 SUCCESS! Great success!
 ```
 
+
+```py
 ## Constraints
 1. Although we only use error/success events, please build the class to handle arbitrary events.
 2. event data will always be a hash
@@ -69,3 +71,4 @@ emitter.emit "success", { message: "Great success!" }
 # Error 1. Yet another error.
 # Error 2. Yet another error.
 # SUCCESS! Great success!
+```
