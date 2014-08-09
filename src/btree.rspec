@@ -3,6 +3,7 @@ require_relative 'btree'
 RSpec.describe BTree do
   let(:btree){ BTree.new(['abc', 'b  ', 'c  '])}
   let(:btree2){ BTree.new(['abc', 'bd ', 'c e', 'd  ', 'e  '])}
+  
   it 'should return in order traversal' do
     expect(btree.pre_order_traversal).to eq 'abc'
     expect(btree2.pre_order_traversal).to eq 'abdce'
